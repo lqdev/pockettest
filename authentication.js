@@ -2,12 +2,9 @@ var request = require('request');
 var bodyParser = require('body-parser');
 
 function getCode(config) {
-    return new Promise((resolve,reject) => {
-        request(config,function(err,res,body){
-            resolve(body);
-            reject(err);
-        })
-    })
+    Promise.resolve(request(config,function(err,res,body){
+        return body;
+    }));
 }
 
 function getToken(config) {

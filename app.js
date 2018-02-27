@@ -8,8 +8,6 @@ var bodyParser = require('body-parser');
 var auth = require('./authentication');
 var config = require('./config');
 
-var authcode = '';
-
 var app = express();
 
 var port = process.env.port || 3979;
@@ -29,8 +27,5 @@ app.listen(port,function(err){
         console.log(`Listening on port ${port}`);
     }
 
-    auth.getCode(config.code)
-        .then((res) => {
-            authcode = JSON.parse(res)['code'];
-        });
+    
 });
