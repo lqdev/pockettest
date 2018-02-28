@@ -1,19 +1,27 @@
 var request = require('request');
-var bodyParser = require('body-parser');
 
 function getCode(config) {
-    Promise.resolve(request(config,function(err,res,body){
-        return body;
-    }));
+    return new Promise((resolve,reject) => {
+        request(config,(err,res,body) => {
+            if(!err) {
+                resolve(JSON.parse(body)['code']);
+            } else {
+                reject(err);
+            }
+        });
+    });
 }
 
 function getToken(config) {
-    request(config,function(err,res,body){
-        if(!err) {
-            return JSON.parse(body)['access_token'];
-        }
-        console.error(err);
-    })
+    return new Promise((resolve,reject)=>{
+        request(config,(err,res,body) => {
+            if(!err) {
+                resolve(JSON.parse(body)['access_token']);
+            } else {
+                reject(err);
+            }
+        });
+    });
 }
 
 module.exports = {
