@@ -1,15 +1,9 @@
 var request = require('request');
 
 function getCode(config) {
-    return new Promise((resolve,reject) => {
-        request(config,(err,res,body) => {
-            if(!err) {
-                resolve(JSON.parse(body)['code']);
-            } else {
-                reject(err);
-            }
-        });
-    });
+    request(config,function(err,res,body){
+        return JSON.parse(body)['code'];
+    })
 }
 
 function getToken(config) {

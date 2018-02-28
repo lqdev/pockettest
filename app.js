@@ -28,18 +28,8 @@ app.get('/api/authentication',function(req,res){
 app.listen(port,function(err){
     if(!err){
         console.log(`Listening on port ${port}`);
-    }
+    }    
 });
 
-function storeResult(x,v){
-    x['code'] = v;
-}
 
-auth.getCode(config.code)
-    .then((code) => {
-        credentialCache.set('code',code);        
-    });
 
-var x = credentialCache.get('code');
-
-console.log(x);
